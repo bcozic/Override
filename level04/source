@@ -1,0 +1,47 @@
+#include <unistd.h>
+
+int main()
+{
+	int		wait_process;
+	char	str[128]; //0x20
+	int		x; //0xa0
+	int		z; //0xa4
+	int		ret_ptrace; //0xa8
+	pid_t	pid; //0xac
+
+	pid = fork();
+	memset(str, 0, 20);
+	x = 0;
+	ret_ptrace = 0;
+	if (!pid)
+	{
+		prctl(1, 1);
+		ptrace(0, 0, 0, 0);
+		puts("Give me some shellcode, k");
+		gets(str);
+		return (0);
+	}
+	while (ret_ptrace != 11)
+	{
+		wait(wait_process);
+		x = wait_process;
+		if (x == 0x7f)
+		{
+			z = wait_process;
+			if ((((z & 0x7f) + 1) >> 1) > 0)
+			{
+				puts("child is exiting...");
+				return (0);
+			}
+		}
+		else
+		{
+			puts("child is exiting...");
+			return (0);
+		}
+		ret_ptrace = ptrace(3, pid, 44, 0);
+	}
+	puts("no exec() for you");
+	kill(pid, 9);
+	return (0);
+}
