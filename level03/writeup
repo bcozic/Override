@@ -1,0 +1,4 @@
+This level is simply a reverse engineering task.
+The program asks for a password, and you need to figure out
+its algorithm to determine what password will be accepted.
+-> 322424827
