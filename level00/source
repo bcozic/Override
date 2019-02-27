@@ -3,7 +3,6 @@
 
 int main()
 {
-	char str[28];
 	int nb;
 	puts("***********************************");
 	puts("* \t     -Level00 -\t\t  *");
