@@ -1,0 +1,6 @@
+Here, we have a buffer overflow we can exploit dureing the password verification.
+To reach that, we must enter the right login, which is easy to find in the binary.
+-> "dat_will"
+
+The shellcode is a classic one, nothing fancy.
+See Ressource/exploit.sh
