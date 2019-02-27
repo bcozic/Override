@@ -1,0 +1,101 @@
+void	(*tab_cmd[21])(void) = {
+	tab_cmd[0] = ptr_fnct1,
+	tab_cmd[1] = ptr_fnct2,
+	tab_cmd[2] = ptr_fnct3,
+	tab_cmd[3] = ptr_fnct4,
+	tab_cmd[4] = ptr_fnct5,
+	tab_cmd[5] = ptr_fnct6,
+	tab_cmd[6] = ptr_fnct7,
+	tab_cmd[7] = ptr_fnct8,
+	tab_cmd[8] = ptr_fnct9,
+	tab_cmd[9] = ptr_fnct10,
+	tab_cmd[10] = ptr_fnct1,
+	tab_cmd[11] = ptr_fnct1,
+	tab_cmd[12] = ptr_fnct1,
+	tab_cmd[13] = ptr_fnct1,
+	tab_cmd[14] = ptr_fnct1,
+	tab_cmd[15] = ptr_fnct1,
+	tab_cmd[16] = ptr_fnct11,
+	tab_cmd[17] = ptr_fnct12,
+	tab_cmd[18] = ptr_fnct13,
+	tab_cmd[19] = ptr_fnct14,
+	tab_cmd[20] = ptr_fnct15,
+	tab_cmd[21] = NULL
+};
+
+void	decrypt(int nb)
+{
+	int		x = -1;
+	int		y = 0;
+	int		len;
+	char	str[16];
+
+	strcpy(str, "Q}|u`sfg~sf{}|a3");
+	len = strlen(str);
+	while (y < len)
+	{
+		(char)y = str[y] ^ nb;
+		y++;
+	}
+	if (!memcmp("Congratulations!", str, 17))
+		system("/bin/sh");
+	else
+		puts("\nInvalid Password");
+}
+
+void	test(int nb, int x)
+{
+	unsigned int	n;
+	void	*p(void); // add for lisibility
+
+	n = x - nb;
+	if (n <= 0x15)
+	{
+		tab_cmd[n]();
+		decrypt(n); // ptr_fnct2
+		return ;
+		decrypt(n); // ptr_fnct3
+		return ;
+		decrypt(n); // ptr_fnct4
+		return ;
+		decrypt(n); // ptr_fnct5
+		return ;
+		decrypt(n); // ptr_fnct6
+		return ;
+		decrypt(n); // ptr_fnct7
+		return ;
+		decrypt(n); // ptr_fnct8
+		return ;
+		decrypt(n); // ptr_fnct9
+		return ;
+		decrypt(n); // ptr_fnct10
+		return ;
+		decrypt(n); // ptr_fnct11
+		return ;
+		decrypt(n); // ptr_fnct12
+		return ;
+		decrypt(n); // ptr_fnct13
+		return ;
+		decrypt(n); // ptr_fnct14
+		return ;
+		decrypt(n); // ptr_fnct15
+		return ;
+		decrypt(n);
+		return ;
+	}
+	decrypt(rand()); // ptr_fnct1
+}
+
+int		main()
+{
+	int	nb;
+
+	srand(time(0));
+	puts("***********************************");
+	puts("*\t\tlevel03\t\t**");
+	puts("***********************************");
+	printf("Password:");
+	scanf("%d", &nb);
+	test(nb, 0x1337d00d);
+	return (0);
+}
