@@ -1,5 +1,0 @@
-Here, the executable will fork and taunt us with an overflow, asking for a shellcode.
-The catch is that we can not use the exec() family, so we can not write scripts and
-call them.
-
-No problem, we can simply open() and read() the flag.
