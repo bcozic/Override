@@ -21,7 +21,7 @@ int auth(char *login, int serial)
 	{
 		if (login[idx] <= 0x1f)
 			return (1);
-		x += (login[idx] ^ x) - ((((((login[idx] ^ x) - (login[idx] ^ x) * 0x88233b2b) << 1) + (login[idx] ^ x) * 0x88233b2b) << 10) * 0x539);
+		x += (login[idx] ^ x) - ((((((login[idx] ^ x) - (login[idx] ^ x) * 0x88233b2b) >> 1) + (login[idx] ^ x) * 0x88233b2b) >> 10) * 0x539);
 		idx++;
 	}
 	if (serial == x)
