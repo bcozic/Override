@@ -1,0 +1,54 @@
+int auth(char *login, int serial)
+{
+	int		len;
+	int		x;
+	int		idx;
+
+	login[strcspn(login, "\n")] = 0;
+	len = strnlen(login, 32);
+	if (len <= 5)
+		return (1);
+	if (ptrace(0, 0, 1, 0) == -1)
+	{
+		puts("\033[32m.---------------------------.");
+		puts("\033[31m| !! TAMPERING DETECTED !!  |");
+		puts("\033[32m'---------------------------'");
+		return(1);
+	}
+	x = (login[3] ^ 0x1337) + 0x5eeded;
+	idx = 0;
+	while(idx < len)
+	{
+		if (login[idx] <= 0x1f)
+			return (1);
+		x += (login[idx] ^ x) - ((((((login[idx] ^ x) - (login[idx] ^ x) * 0x88233b2b) << 1) + (login[idx] ^ x) * 0x88233b2b) << 10) * 0x539);
+		idx++;
+	}
+	if (serial == x)
+		return (0);
+	return (1);
+}
+
+int main()
+{
+	int		serial;
+	char	login[32];
+
+	puts("***********************************");
+	puts("*\t\tlevel06\t\t  *");
+	puts("***********************************");
+	printf("-> Enter Login: ");
+	fgets(login, 32, stdin);
+	puts("***********************************");
+	puts("***** NEW ACCOUNT DETECTED ********");
+	puts("***********************************");
+	printf("-> Enter Serial: ");
+	scanf("%u", serial);
+	if (!auth(login, serial))
+	{
+		puts("Authenticated!");
+		system("/bin/sh");
+		return (0);
+	}
+	return (1);
+}
