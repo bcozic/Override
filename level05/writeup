@@ -1,0 +1,7 @@
+Here, we have another format string exploit.
+
+Since there is no backdoor function, we need to insert a shellcode in the stack.
+Then, we overwrite the global offset table to redirect the exit() call towards our shellcode.
+
+The only subtlety is that our shellcode must not contain any uppercase character (they would
+be lowercased).
