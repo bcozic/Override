@@ -1,0 +1,22 @@
+int main()
+{
+	//0x90
+	int		cmpt; // unuse because scas remplace by strlen here
+	char	str[100];//0x28
+	int		x = 0;
+
+	fgets(str, 100, stdin);
+	while ((strlen(str) < x))
+	{
+		if (str[x] > '@')
+		{
+			if (str[x] <= 'Z')
+			{
+				str[x] = str[x] ^ 0x20;
+			}
+		}
+		x++;
+	}
+	printf(str)
+	exit(0);
+}
