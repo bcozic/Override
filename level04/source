@@ -3,11 +3,11 @@
 int main()
 {
 	int		wait_process;
-	char	str[128]; //0x20
-	int		x; //0xa0
-	int		z; //0xa4
-	int		ret_ptrace; //0xa8
-	pid_t	pid; //0xac
+	char	str[128];
+	int		x;
+	int		z;
+	int		ret_ptrace;
+	pid_t	pid;
 
 	pid = fork();
 	memset(str, 0, 20);
