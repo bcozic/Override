@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 void	(*tab_cmd[21])(void) = {
 	tab_cmd[0] = ptr_fnct1,
 	tab_cmd[1] = ptr_fnct2,

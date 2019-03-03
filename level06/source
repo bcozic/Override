@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/ptrace.h>
+#include <string.h>
+
 int auth(char *login, int serial)
 {
 	int		len;
