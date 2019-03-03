@@ -13,7 +13,7 @@ unsigned int	get_unum()
 {
 	unsigned int	nb = 0;
 	fflush(stdout);
-	scanf("%u", nb);
+	scanf("%u", &nb);
 	clear_stdin();
 	return (nb);
 }
