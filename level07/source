@@ -27,9 +27,6 @@ int	store_number(unsigned int *nb_tab)
 	nb = get_unum();
 	printf(" Index: ");
 	idx = get_unum();
-	ecx = idx
-	edx = idx - (((0xaaaaaaab * idx) >> 1) * 3)
-	eax = ((0xaaaaaaab * idx) >> 1) * 3
 	if (idx - (((0xaaaaaaab * idx) >> 1) * 3) || nb >> 0x18 == 0xb7)
 	{
 		puts(" *** ERROR! ***");
@@ -37,7 +34,7 @@ int	store_number(unsigned int *nb_tab)
 		puts(" *** ERROR! ***");
 		return (1);
 	}
-	nb_tab[idx << 2] = nb;
+	nb_tab[idx] = nb;
 	return (0);
 }
 
@@ -47,7 +44,7 @@ int	read_number(unsigned int *nb_tab)
 
 	printf(" Index: ");
 	nb = get_unum();
-	printf(" Number at data[%u] is %u\n", nb, nb_tab[nb << 2]);
+	printf(" Number at data[%u] is %u\n", nb, nb_tab[nb]);
 	return (0);
 }
 
@@ -56,9 +53,10 @@ int	main(int ac, char **av, char** envp)
 	char			**env = envp;
 	char			**argv = av;
 	unsigned int	nb_tab[106];
-	int				cmd[6];
+	int				return_cmd = 0;
+	char			cmd[20];
 
-	memset(cmd, 0, 24);
+	memset(cmd, 0, 20);
 	memset(nb_tab, 0, 100);
 	while (*av)
 	{
@@ -83,20 +81,20 @@ int	main(int ac, char **av, char** envp)
 	while (1)
 	{
 		printf("Input command: ");
-		cmd[0] = 1;
-		fgets(cmd + 1, 20, stdin);
-		((char*)(cmd + 1))[strlen(cmd + 1) -1] = 0;
-		if (!memcmp(cmd + 1, "store", 5))
-			cmd[0] = store_number(nb_tab);
-		else if (!memcmp(cmd + 1, "read", 4))
-			cmd[0] = read_number(nb_tab);
-		else if (!memcmp(cmd + 1, "quit", 4))
+		return_cmd = 1;
+		fgets(cmd, 20, stdin);
+		((char*)(cmd))[strlen(cmd) -1] = 0;
+		if (!memcmp(cmd, "store", 5))
+			return_cmd = store_number(nb_tab);
+		else if (!memcmp(cmd, "read", 4))
+			return_cmd = read_number(nb_tab);
+		else if (!memcmp(cmd, "quit", 4))
 			break ;
-		if (cmd[0] != 0)
-			printf(" Failed to do %s command\n", cmd + 1);
+		if (return_cmd != 0)
+			printf(" Failed to do %s command\n", cmd);
 		else
-			printf(" Completed %s command successfully\n", quit);
-		memset(cmd + 1, 0, 20);
+			printf(" Completed %s command successfully\n", cmd);
+		memset(cmd, 0, 20);
 	}
 	return (0);
 }
