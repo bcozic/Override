@@ -1,0 +1,8 @@
+This level is a pure reverse engineering task. The program will ask for a login,
+and a serial number. I will then compute a pseudo checksum of the login, and if
+the serial number we entered match the checksum, it will open us a shell.
+
+There is a mechanism to catch SIG_TRAP in order to make it harder to use gdb, but
+we can easily make our debugger skip that call. As such, there is no need to reverse
+the computation, we just need to enter a login of our choice, jump to the right place
+in gdb, and get the right serial number.
