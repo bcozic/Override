@@ -6,7 +6,9 @@ start:
 main:
 push   ebp
 mov    ebp, esp
-lea    ecx, [edx + 3]
+mov    ecx, edx
+add    ecx, 12
+jmp    ecx
 add    edx, 12
 jmp    edx
 push   0
