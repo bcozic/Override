@@ -1,0 +1,11 @@
+This isn't even a proper exploit...
+
+The program level08 will open a file and back it up in
+the directory backup.
+
+If we try to open directly /home/users/level09/.pass,
+it will inform us that it can't open ./backups//home/users/level09/.pass
+
+Since the path seems to be a problem, what if we simply make a symbolic link ?
+
+It works...
