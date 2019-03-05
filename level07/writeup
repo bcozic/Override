@@ -1,0 +1,14 @@
+This level is a bit more tricky.
+
+We have a program that allows us to store numbers four bytes
+at a time in the stack. We only need to give a value, and the index
+of an integer array.
+
+The only catch is that we can't store on indexes that are multiples of 3.
+Those ones will be filled with zeroes.
+We could store a shellcode, but it would need to be fragmented to avoid the zeroes.
+We did that part.
+
+Since we can modify the stack, we would like to modify the return address, but it is
+on an index which is a multiple of 3, of course.
+However, we can write at the same place with a different index thanks to overlaps...

