@@ -1,0 +1,4 @@
+Here we have 2 fgets with a size highter than their buffer.
+The first one is the user name, in the structure data we have a string of 40, but we can write 128.
+in the memory after the user name we have the lenght of the message send after, we erase it with your new value, at random, whereof erase the return address
+And with the second we send the adress of the secret backdoor...
