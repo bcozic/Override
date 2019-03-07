@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+
+void	log_wrapper(FILE *log_file, char *str_log, char *file)
+{
+	char	str[256];
+
+	strcpy(str, str_log);
+	snprintf(str + strlen(str), 254 - strlen(str), file);
+	str[strcspn(str, "\n")] = 0;
+	fprintf(log_file, "LOG: %s\n", str);
+}
+
+int		main(int ac, char **av)
+{
+	char	backup[100];
+	char	c = -1;
+	int		fd = -1;
+	FILE	*av_file;
+	FILE	*log_file;
+
+	if (ac != 2)
+		printf("Usage: %s filename\n", av[0]);
+	log_file = fopen("./backups/.log", "w");
+	if (log_file == NULL)
+	{
+		printf("ERROR: Failed to open %s\n", "./backups/.log");
+		exit(1);
+	}
+	log_wrapper(log_file, "Starting back up: ", av[1]);
+	av_file = fopen(av[1], "r");
+	if (av_file == NULL)
+	{
+		printf("ERROR: Failed to open %s\n", av[1]);
+		exit(1);
+	}
+	memcpy(backup, "./backups/", 11);
+	strncat(backup, av[1], 99 - strlen(backup));
+	fd = open(backup, O_ASYNC | O_SYNC | O_WRONLY, O_NOFOLLOW | O_SYNC | O_SHLOCK | O_EXLOCK);
+	if (fd < 0)
+	{
+		printf("ERROR: Failed to open %s%s\n", "./backups/", av[1]);
+		exit(1);
+	}
+	while ((c = (char)fgetc(av_file)) != 'q')
+		write(fd, c, 1);
+	log_wrapper(log_file, "Finished back up ", av[1]);
+	fclose(av_file);
+	close(fd);
+	retrun (0);
+}
