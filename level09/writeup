@@ -1,4 +1,20 @@
-Here we have 2 fgets with a size highter than their buffer.
-The first one is the user name, in the structure data we have a string of 40, but we can write 128.
-in the memory after the user name we have the lenght of the message send after, we erase it with your new value, at random, whereof erase the return address
-And with the second we send the adress of the secret backdoor...
+Here we have two fgets with a size higher than their buffer.
+
+They are used to set a structure containing two strings: a message and an user_name, and
+an integer containing the size of the message.
+
+The first fgets is for the user name. Its buffer size is 40, but fgets takes 128 characters,
+which means we can overwrite the size of the message.
+
+The second fgets is here to get the message. Instead of putting it directly in the
+structure, it is taken in a temporary buffer, and then copied in the structure.
+
+However, the temporary buffer has a size of 1024 bytes, wereas the buffer in the
+structure has a size of 140 bytes.
+
+Since the copy is done with strncpy, with the size in the structure as a parameter,
+we can choose how many bytes to copy, which means we can overwrite the return address
+of the handle_msg function.
+
+What better choice than calling the secret_backdoor function that kindly opens us
+a shell?
