@@ -1,0 +1,6 @@
+This level is a classic format string exploit. The binary will ask us to
+log in, and, if this succeeds, will open us a shell.
+
+However, if the identification fails, it will inform us that our login is invalid,
+by writing it with printf, and no protection... It is easy then to overwrite the
+return address and replace it with the part where the shell is open.
