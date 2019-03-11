@@ -1,0 +1,2 @@
+This level is simply about reversing. The binary will use scanf to get an integer,
+and it will open a shell if the value we enter is 5276
